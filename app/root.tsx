@@ -7,12 +7,11 @@ import {
 	Scripts,
 	ScrollRestoration,
 } from '@remix-run/react';
-import type { ErrorBoundaryComponent } from '@remix-run/react/dist/routeModules';
 import styles from './gen-styles/app-generated-do-not-edit.css';
 
 export const meta: MetaFunction = () => ({
 	charset: 'utf-8',
-	title: 'Have a Pint with Pintman',
+	title: 'Album Cover Generator',
 	viewport: 'width=device-width,initial-scale=1',
 });
 
@@ -46,17 +45,15 @@ export default function App() {
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
-				<script
-					defer
-					src="https://static.cloudflareinsights.com/beacon.min.js"
-					data-cf-beacon='{"token": "a799cfba2d9b4d78ab902bd025c90a7d"}'
-				></script>
 			</body>
 		</html>
 	);
 }
 
-export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+interface ErrorBoundaryProps {
+	error: Error;
+}
+export function ErrorBoundary({ error }: ErrorBoundaryProps) {
 	return (
 		<html lang="en">
 			<head>
@@ -74,12 +71,7 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
-				<script
-					defer
-					src="https://static.cloudflareinsights.com/beacon.min.js"
-					data-cf-beacon='{"token": "a799cfba2d9b4d78ab902bd025c90a7d"}'
-				></script>
 			</body>
 		</html>
 	);
-};
+}
