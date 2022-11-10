@@ -12,12 +12,16 @@
 	}
 
 	button,
-	button[type="submit"] {
-		@apply bg-orange-700 hover:bg-orange-800 rounded py-2 px-4;
+	button[type='submit'] {
+		@apply rounded bg-orange-700 py-2 px-4 hover:bg-orange-800;
 	}
 
 	a {
 		@apply underline;
+	}
+
+	input {
+		@apply rounded bg-gray-400 p-3 text-gray-900 placeholder:text-gray-600;
 	}
 }
 
