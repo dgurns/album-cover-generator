@@ -12,7 +12,7 @@ export default function Home() {
 				</div>
 
 				<Form className="relative mt-8 flex w-full flex-col items-start space-y-6 overflow-y-scroll rounded border border-gray-600 bg-gray-800 p-2">
-					<div className="flex w-full flex-col space-y-1">
+					<div className="flex w-full flex-col space-y-2">
 						<label htmlFor="artistName">Your Artist Name</label>
 						<input
 							type="text"
@@ -22,97 +22,133 @@ export default function Home() {
 						/>
 					</div>
 
-					<div className="flex w-full flex-col space-y-1">
+					<div className="flex w-full flex-col space-y-2">
 						<label>Pick a Style</label>
-						<div className="grid grid-cols-3 grid-rows-1 gap-1">
-							<label
-								htmlFor="modern"
-								className="relative aspect-square w-full rounded bg-gray-300"
-							>
-								<input
-									type="radio"
-									name="style"
-									id="modern"
-									className="absolute top-3 left-2"
-								/>
-								<span className="absolute top-2 left-8 rounded bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
-									Modern
-								</span>
-							</label>
+						<div className="grid grid-cols-3 grid-rows-1 gap-2">
 							<label
 								htmlFor="oilPainting"
 								className="relative aspect-square w-full rounded bg-gray-300"
 							>
+								<img
+									src="/images/oilpainting_sm.jpg"
+									width="100%"
+									height="100%"
+									alt="Oil Painting"
+								/>
+								<span className="absolute top-1.5 left-1 rounded bg-gray-100 py-1 pl-7 pr-2 text-sm text-gray-600">
+									Oil Painting
+								</span>
 								<input
 									type="radio"
 									name="style"
 									id="oilPainting"
-									className="absolute top-3 left-2"
+									className="absolute top-3 left-2.5"
 								/>
-								<span className="absolute top-2 left-8 rounded bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
-									Oil Painting
-								</span>
 							</label>
 							<label
 								htmlFor="pub"
 								className="relative aspect-square w-full rounded bg-gray-300"
 							>
+								<img
+									src="/images/pub_sm.jpg"
+									width="100%"
+									height="100%"
+									alt="Pub"
+								/>
+								<span className="absolute top-1.5 left-1 rounded bg-gray-100 py-1 pl-7 pr-2 text-sm text-gray-600">
+									Pub
+								</span>
 								<input
 									type="radio"
 									name="style"
 									id="pub"
-									className="absolute top-3 left-2"
+									className="absolute top-3 left-2.5"
 								/>
-								<span className="absolute top-2 left-8 rounded bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
-									Pub
-								</span>
 							</label>
 							<label
 								htmlFor="blackAndWhite"
 								className="relative aspect-square w-full rounded bg-gray-300"
 							>
+								<img
+									src="/images/blackandwhite_sm.jpg"
+									width="100%"
+									height="100%"
+									alt="Black and White"
+								/>
+								<span className="absolute top-1.5 left-1 rounded bg-gray-100 py-1 pl-7 pr-2 text-sm text-gray-600">
+									B & W
+								</span>
 								<input
 									type="radio"
 									name="style"
 									id="blackAndWhite"
-									className="absolute top-3 left-2"
+									className="absolute top-3 left-2.5"
 								/>
-								<span className="absolute top-2 left-8 rounded bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
-									B & W
-								</span>
 							</label>
 							<label
-								htmlFor="outdoors"
+								htmlFor="nature"
 								className="relative aspect-square w-full rounded bg-gray-300"
 							>
+								<img
+									src="/images/nature_sm.jpg"
+									width="100%"
+									height="100%"
+									alt="Nature"
+								/>
+								<span className="absolute top-1.5 left-1 rounded bg-gray-100 py-1 pl-7 pr-2 text-sm text-gray-600">
+									Nature
+								</span>
 								<input
 									type="radio"
 									name="style"
-									id="outdoors"
-									className="absolute top-3 left-2"
+									id="nature"
+									className="absolute top-3 left-2.5"
 								/>
-								<span className="absolute top-2 left-8 rounded bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
-									Outdoors
+							</label>
+							<label
+								htmlFor="artsy"
+								className="relative aspect-square w-full rounded bg-gray-300"
+							>
+								<img
+									src="/images/artsy_sm.jpg"
+									width="100%"
+									height="100%"
+									alt="Artsy"
+								/>
+								<span className="absolute top-1.5 left-1 rounded bg-gray-100 py-1 pl-7 pr-2 text-sm text-gray-600">
+									Artsy
 								</span>
+								<input
+									type="radio"
+									name="style"
+									id="artsy"
+									className="absolute top-3 left-2.5"
+								/>
 							</label>
 							<label
 								htmlFor="vintage"
 								className="relative aspect-square w-full rounded bg-gray-300"
 							>
+								<img
+									src="/images/vintage_sm.jpg"
+									width="100%"
+									height="100%"
+									alt="Vintage"
+								/>
+								<span className="absolute top-1.5 left-1 rounded bg-gray-100 py-1 pl-7 pr-2 text-sm text-gray-600">
+									Vintage
+								</span>
 								<input
 									type="radio"
 									name="style"
 									id="vintage"
-									className="absolute top-3 left-2"
+									className="absolute top-3 left-2.5"
 								/>
-								<span className="absolute top-2 left-8 rounded bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
-									Vintage
-								</span>
 							</label>
 						</div>
 					</div>
 
-					<div className="flex w-full flex-col space-y-1">
+					<div className="flex w-full flex-col space-y-2">
 						<label htmlFor="specialRequests">Any Special Requests?</label>
 						<input
 							type="text"
