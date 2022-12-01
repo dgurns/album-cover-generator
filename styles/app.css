@@ -16,6 +16,10 @@
 		@apply rounded bg-orange-700 py-2 px-4 hover:bg-orange-800;
 	}
 
+	button:disabled {
+		@apply bg-gray-600 hover:bg-gray-600;
+	}
+
 	a {
 		@apply underline;
 	}

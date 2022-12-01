@@ -61,8 +61,8 @@ export function ErrorBoundary({ error }: ErrorBoundaryProps) {
 				<Links />
 			</head>
 			<body>
-				<div className="flex flex-col items-center justify-start w-full h-screen">
-					<div className="flex w-full md:max-w-md h-screen md:h-auto flex-col items-center text-center justify-start py-8 px-4">
+				<div className="flex h-screen w-full flex-col items-center justify-start">
+					<div className="flex h-screen w-full flex-col items-center justify-start py-8 px-4 text-center md:h-auto md:max-w-md">
 						Oops! There was an error:
 						<span className="text-red-500">{error.message}</span>
 						Please reload the page.
