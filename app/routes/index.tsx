@@ -1,5 +1,6 @@
 import { json, type ActionArgs } from '@remix-run/cloudflare';
 import { Form, useActionData, useTransition, Link } from '@remix-run/react';
+import { useEffect } from 'react';
 
 interface ActionData {
 	error?: string;
@@ -80,29 +81,37 @@ export default function Home() {
 	const error = data?.error;
 	const generatedUrls = data?.urls;
 
+	useEffect(() => {
+		if (generatedUrls) {
+			window.scrollTo(0, 0);
+		}
+	}, [generatedUrls]);
+
 	return (
 		<div className="flex h-screen w-full flex-col items-center justify-start">
 			<div className="flex h-screen w-full flex-col items-center justify-start space-y-8 py-4 px-4 md:h-auto md:max-w-md">
 				<div className="mt-4 flex flex-col items-center justify-start text-center">
 					<h1>Album Cover Generator</h1>
-					<div className="text-gray-400">
+					<div className="mt-1 text-gray-400">
 						Get ideas for your next album cover
 					</div>
 				</div>
 
 				<div className="flex w-full flex-col items-start">
 					{generatedUrls ? (
-						<div className="w-full space-y-10">
-							{generatedUrls.map((url) => (
-								<img
-									key={url}
-									src={url}
-									alt="Generated album cover"
-									width="100%"
-									className="aspect-square rounded border border-gray-600 bg-gray-800 p-2"
-								/>
-							))}
-							<div className="pb-4 text-center">
+						<div className="w-full">
+							<div className="grid grid-cols-1 grid-rows-4 gap-10">
+								{generatedUrls.map((url) => (
+									<img
+										key={url}
+										src={url}
+										alt="Generated album cover"
+										width="100%"
+										className="aspect-square rounded border border-gray-600 bg-gray-800 p-2"
+									/>
+								))}
+							</div>
+							<div className="mt-10 text-center">
 								<Link to="/" reloadDocument>
 									↻ Generate More
 								</Link>
