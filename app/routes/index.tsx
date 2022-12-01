@@ -1,6 +1,30 @@
+import type { AppLoadContext, LoaderArgs } from '@remix-run/cloudflare';
 import { json, type ActionArgs } from '@remix-run/cloudflare';
 import { Form, useActionData, useTransition, Link } from '@remix-run/react';
 import { useEffect } from 'react';
+
+export const headers = () => ({
+	'WWW-Authenticate': 'Basic',
+});
+
+const isAuthorized = (request: Request, context: AppLoadContext) => {
+	const header = request.headers.get('Authorization');
+	if (!header) {
+		return false;
+	}
+	const base64 = header.replace('Basic ', '');
+	// atob is present in Cloudflare Workers global scope
+	// https://developers.cloudflare.com/workers/runtime-apis/web-standards#base64-utility-methods
+	const [username, password] = atob(base64).toString().split(':');
+	return username === context.USERNAME && password === context.PASSWORD;
+};
+
+export const loader = async ({ request, context }: LoaderArgs) => {
+	if (!isAuthorized(request, context)) {
+		return json({ authorized: false }, { status: 401 });
+	}
+	return null;
+};
 
 interface ActionData {
 	error?: string;
@@ -58,7 +82,7 @@ export const action = async ({ request, context }: ActionArgs) => {
 		},
 		body: JSON.stringify({
 			prompt,
-			n: 4,
+			n: 3,
 			size: '256x256',
 		}),
 	});
@@ -100,7 +124,7 @@ export default function Home() {
 				<div className="flex w-full flex-col items-start">
 					{generatedUrls ? (
 						<div className="w-full">
-							<div className="grid grid-cols-1 grid-rows-4 gap-10">
+							<div className="grid grid-cols-1 grid-rows-3 gap-10">
 								{generatedUrls.map((url) => (
 									<img
 										key={url}
