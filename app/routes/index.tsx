@@ -83,7 +83,7 @@ export const action = async ({ request, context }: ActionArgs) => {
 		body: JSON.stringify({
 			prompt,
 			n: 3,
-			size: '256x256',
+			size: '512x512',
 		}),
 	});
 	interface OpenAIResponse {
@@ -112,8 +112,8 @@ export default function Home() {
 	}, [generatedUrls]);
 
 	return (
-		<div className="flex h-screen w-full flex-col items-center justify-start">
-			<div className="flex h-screen w-full flex-col items-center justify-start space-y-8 py-4 px-4 md:h-auto md:max-w-md">
+		<div className="flex w-full flex-col items-center justify-start pb-8">
+			<div className="flex w-full flex-col items-center justify-start space-y-8 py-4 px-4 md:h-auto md:max-w-md">
 				<div className="mt-4 flex flex-col justify-start text-center">
 					<h1>Album Cover Generator</h1>
 					<div className="mt-1 text-gray-400">
@@ -124,14 +124,14 @@ export default function Home() {
 				<div className="flex w-full flex-col items-start justify-center">
 					{generatedUrls ? (
 						<div className="flex w-full flex-col items-center">
-							<div className="grid grid-cols-1 grid-rows-3 gap-10">
+							<div className="grid w-full grid-cols-1 grid-rows-3 gap-10">
 								{generatedUrls.map((url) => (
 									<img
 										key={url}
 										src={url}
 										alt="Generated album cover"
 										width="100%"
-										className="aspect-square rounded border border-gray-600 bg-gray-800 p-2"
+										className="aspect-square w-full rounded border border-gray-600 bg-gray-800 p-2"
 									/>
 								))}
 							</div>
