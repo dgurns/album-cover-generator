@@ -114,16 +114,16 @@ export default function Home() {
 	return (
 		<div className="flex h-screen w-full flex-col items-center justify-start">
 			<div className="flex h-screen w-full flex-col items-center justify-start space-y-8 py-4 px-4 md:h-auto md:max-w-md">
-				<div className="mt-4 flex flex-col items-center justify-start text-center">
+				<div className="mt-4 flex flex-col justify-start text-center">
 					<h1>Album Cover Generator</h1>
 					<div className="mt-1 text-gray-400">
 						Get ideas for your next album cover
 					</div>
 				</div>
 
-				<div className="flex w-full flex-col items-start">
+				<div className="flex w-full flex-col items-start justify-center">
 					{generatedUrls ? (
-						<div className="w-full">
+						<div className="flex w-full flex-col items-center">
 							<div className="grid grid-cols-1 grid-rows-3 gap-10">
 								{generatedUrls.map((url) => (
 									<img
