@@ -7,7 +7,7 @@ export const headers = () => ({
 	'WWW-Authenticate': 'Basic',
 });
 
-const isAuthorized = (request: Request, context: AppLoadContext) => {
+function isAuthorized(request: Request, context: AppLoadContext) {
 	const header = request.headers.get('Authorization');
 	if (!header) {
 		return false;
@@ -17,7 +17,7 @@ const isAuthorized = (request: Request, context: AppLoadContext) => {
 	// https://developers.cloudflare.com/workers/runtime-apis/web-standards#base64-utility-methods
 	const [username, password] = atob(base64).toString().split(':');
 	return username === context.USERNAME && password === context.PASSWORD;
-};
+}
 
 export const loader = async ({ request, context }: LoaderArgs) => {
 	if (!isAuthorized(request, context)) {
@@ -38,6 +38,13 @@ type Style =
 	| 'nature'
 	| 'artsy'
 	| 'vintage';
+
+// mock image URLs to use while testing
+const mockImageUrls = [
+	'https://oaidalleapiprodscus.blob.core.windows.net/private/org-VvkFe6SnkydfF2qu5gZ5lX75/user-9CcsV2OhgdvKp3qOCsZ3s2fb/img-4RuVw8Fmyl6wNlulHDEYskJ2.png?st=2022-12-04T10%3A09%3A11Z&se=2022-12-04T12%3A09%3A11Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2022-12-04T01%3A59%3A06Z&ske=2022-12-05T01%3A59%3A06Z&sks=b&skv=2021-08-06&sig=puHakZ/pzmCl1q69EjTUAORmInWmfxKjCOGNd4o7hgs%3D',
+	'https://oaidalleapiprodscus.blob.core.windows.net/private/org-VvkFe6SnkydfF2qu5gZ5lX75/user-9CcsV2OhgdvKp3qOCsZ3s2fb/img-uXfANRCveMeaqaYsUF1OZWdB.png?st=2022-12-04T10%3A09%3A11Z&se=2022-12-04T12%3A09%3A11Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2022-12-04T01%3A59%3A06Z&ske=2022-12-05T01%3A59%3A06Z&sks=b&skv=2021-08-06&sig=iFsryB82lv2u3LPyXzNvm5I2O%2Bk5C5tLJhaqycZxWsI%3D',
+	'https://oaidalleapiprodscus.blob.core.windows.net/private/org-VvkFe6SnkydfF2qu5gZ5lX75/user-9CcsV2OhgdvKp3qOCsZ3s2fb/img-W1czF7lzVzGeGCPYeECDJ0jc.png?st=2022-12-04T10%3A09%3A11Z&se=2022-12-04T12%3A09%3A11Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2022-12-04T01%3A59%3A06Z&ske=2022-12-05T01%3A59%3A06Z&sks=b&skv=2021-08-06&sig=AX1YcBO5pdEWsQ/8kivhaopkIb2B/4xvo%2BHx8nm2mHY%3D',
+];
 
 export const action = async ({ request, context }: ActionArgs) => {
 	const formData = await request.formData();
@@ -74,6 +81,11 @@ export const action = async ({ request, context }: ActionArgs) => {
 			throw new Error('Invalid style');
 	}
 	const prompt = `Album cover by ${artistName}. ${stylePrompt} Also add these details: ${specialRequests}`;
+	// if we don't want to hit the actual OpenAI API during testing, can set
+	// USE_MOCK_IMAGES to true and return mock image URLs
+	if (context.USE_MOCK_IMAGES) {
+		return json<ActionData>({ urls: mockImageUrls });
+	}
 	const res = await fetch('https://api.openai.com/v1/images/generations', {
 		method: 'POST',
 		headers: {
