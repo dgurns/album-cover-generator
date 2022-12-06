@@ -1,3 +1,3 @@
-# Talk to Pintman
+# Album Cover Generator
 
-Made with [Make Your Own Chatbot](https://github.com/dgurns/make-your-own-chatbot)
+Made with Remix and the DALL-E API, configured to deploy on Cloudflare Pages.
